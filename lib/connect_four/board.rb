@@ -51,7 +51,7 @@ module ConnectFour
 	def winner?
 		winning_positions.each do |position|
 			next if winning_position_values(position).all_empty?
-			return true if winning_position_values(position).all_same?
+			return true if winning_position_values(position).has_four?
 		end
 	end
 		

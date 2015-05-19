@@ -46,6 +46,11 @@ module ConnectFour
 			end	
 		end	
 
+		TestCell = Struct.new(:value)
+		let(:x_cell) { TestCell.new("X")}
+		let(:y_cell) { TestCell.new("Y")}
+		let(:empty) { TestCell.new("")}
+		
 		context "#game_over" do
 			it "returns :winner if winner? is true" do
 				board = Board.new	
@@ -64,11 +69,71 @@ module ConnectFour
 				board  = Board.new
 				board.stub(:winner?) { false}
 				board.stub(:draw?) {false}
-				expect(board.game_over).to be_false
+				expect(board.game_over).to be_falsey
 			end
+
+			it "returns :winner when row has objects with values thare the same"  do
+				grid = [
+					[x_cell, x_cell, x_cell, x_cell, x_cell, x_cell, x_cell],
+					[x_cell, x_cell, x_cell, x_cell, x_cell, x_cell, x_cell],
+					[x_cell, x_cell, x_cell, x_cell, x_cell, x_cell, x_cell],
+					[x_cell, x_cell, x_cell, x_cell, x_cell, x_cell, x_cell],
+					[x_cell, x_cell, x_cell, x_cell, x_cell, x_cell, x_cell],
+					[x_cell, x_cell, x_cell, x_cell, x_cell, x_cell, x_cell]
+				]
+				
+				board = Board.new(grid: grid)
+				expect(board.game_over).to eq :winner
+			end
+
+			it "returns :winner y cells are the same"  do
+				grid = [
+					[x_cell, x_cell, empty, empty, empty, empty, empty],
+					[x_cell, empty, empty, empty, empty, empty, empty],
+					[x_cell, empty, empty, empty, empty, empty, empty],
+					[x_cell, empty, empty, empty, empty, empty, empty],
+					[x_cell, empty, empty, empty, empty, empty, empty],
+					[x_cell, empty, empty, empty, empty, empty, empty]
+				]
+				
+				board = Board.new(grid: grid)
+				expect(board.game_over).to eq :winner
+			end
+	
+			it "returns winner if the diagonal is 4"  do
+				grid = [
+					[x_cell, y_cell, x_cell, y_cell, x_cell, y_cell, x_cell],
+					[x_cell, y_cell, x_cell, y_cell, x_cell, y_cell, x_cell],
+					[x_cell, y_cell, x_cell, y_cell, x_cell, y_cell, x_cell],
+					[y_cell, x_cell, y_cell, x_cell, y_cell, x_cell, y_cell],
+					[y_cell, x_cell, y_cell, x_cell, y_cell, x_cell, y_cell],
+					[y_cell, x_cell, y_cell, x_cell, y_cell, x_cell, y_cell]
+				]
+				
+				board = Board.new(grid: grid)
+				expect(board.game_over).to be_truthy
+			end
+	
+			it "returns draw if there are not winners"  do
+				grid = [
+					[x_cell, empty, empty, empty, empty, empty, empty],
+					[x_cell, x_cell, empty, empty, empty, empty, empty],
+					[x_cell, empty, x_cell, empty, empty, empty, empty],
+					[empty, empty, empty, x_cell, empty, empty, empty],
+					[empty, empty, empty, empty, empty, empty, empty],
+					[empty, empty, empty, empty, empty, empty, empty]
+				]
+				
+				board = Board.new(grid: grid)
+				expect(board.game_over).to be_truthy
+			end
+
+
+
 		end
 			
 	end
 			
 end
+
 

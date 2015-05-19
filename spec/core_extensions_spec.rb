@@ -15,17 +15,17 @@ describe Array do
 		end
 	end
 	
-	context "#all_same?" do
+	context "#has_four?" do
 		it "returns true if all elements of the Array are the same" do
-			expect(["A", "A", "A"].all_same?).to be_truthy
+			expect(["A", "A", "A", "A"].has_four?).to be_truthy
 		end
 		
 		it "returns false if some of the Array elements are not the same" do
-			expect(["", 1, "", Object.new].all_same?).to be_falsey
+			expect(["", 1, "", ""].has_four?).to be_falsey
 		end
 		
 		it "returns true for an empty Array" do
-			expect([].all_same?).to be_truthy
+			expect([].has_four?).to be_falsey
 		end
 		
 	end
