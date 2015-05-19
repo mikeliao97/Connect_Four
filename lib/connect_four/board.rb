@@ -18,6 +18,10 @@ module ConnectFour
 		return :draw if draw?
 		false
 	end
+	
+	def formatted_grid
+		puts @grid
+	end
 
     private
  

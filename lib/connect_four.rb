@@ -1,4 +1,4 @@
-require "connect_four/version"
+require_relative "./connect_four/version.rb"
 require_relative "./connect_four/player.rb"
 
 module ConnectFour
