@@ -36,7 +36,7 @@ module ConnectFour
 		puts "This is x: #{x}"
 		puts "This is y: #{y}"
 		@board.set_cell(x,y, current_player.color)
-		if @board.game_over != false
+		if @board.game_over 
 			puts @board.game_over
 			puts game_over_message
 			@board.formatted_grid

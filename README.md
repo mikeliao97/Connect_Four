@@ -1,6 +1,6 @@
 # ConnectFour
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/connect_four`. To experiment with that code, run `bin/console` for an interactive prompt.
+This plays the game connect Four. Empty squares are denoted with the Letter 'Z'. Corresponding games will be played
+with O's and X's
 
 TODO: Delete this and the text above, and describe your gem
 
@@ -22,7 +22,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can play this game by installing the application. Then run 'ruby example/example_game.rb' . You can change this file to change the name, and the user's color or whatever. You can also change the characters into unicode characters
+for funny pieces and whatnot.
 
 ## Development
 
