@@ -1,6 +1,6 @@
 class Array
 	def all_empty?
-		self.all? { |element| element.to_s.empty? }
+		self.all? { |element| element.to_s == "Z" }
 	end
 	
 	def has_four?
@@ -9,7 +9,7 @@ class Array
 			current_element = self[i]
 			current_max = 0
 			for j in 0..self.length - 1
-				if(self[i] == self[j] && self[j] != "")
+				if(self[i] == self[j] && self[j] != "Z")
 					current_max += 1
 				end	
 			end
@@ -28,7 +28,7 @@ class Array
 	end
 	
 	def any_empty?
-		self.any? { |element| element.to_s.empty? }
+		self.any? { |element| element.to_s == "Z" }
 	end
 end
 

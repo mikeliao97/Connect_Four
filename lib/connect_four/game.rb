@@ -17,7 +17,7 @@ module ConnectFour
     end
 	
     def get_move(human_move = gets.chomp)
-	human_move_to_coordinate(human_move)
+		check_available_move(human_move)
     end
     
     def game_over_message 
@@ -29,16 +29,20 @@ module ConnectFour
     def play
 	puts "#{current_player.name} has randomly been selected as the first player"
 	while true
-		board.formatted_grid
+		@board.formatted_grid
 		puts ""
 		puts solicit_move
-		x, y = get_move
-		board.set_cell(x, y, current_player.color)
-		if board.game_over
+		x,y = get_move
+		puts "This is x: #{x}"
+		puts "This is y: #{y}"
+		@board.set_cell(x,y, current_player.color)
+		if @board.game_over != false
+			puts @board.game_over
 			puts game_over_message
-			board.formatted_grid
+			@board.formatted_grid
 			return
-		else
+		else	
+			puts "Switch!"
 			switch_players
 		end	
 	end		
@@ -48,16 +52,12 @@ module ConnectFour
 
     private
 		
-    def human_move_to_coordinate(human_move)
-	check_available_move(human_move)	    
-    end
 	
     def check_available_move(move)
 	for i in 5.downto(0)
-		puts board.get_cell(move.to_i - 1, i)
-		if(board.get_cell(move.to_i - 1, i).value == "")
-			return [(move.to_i - 1), i]
-			break
+		puts board.get_cell(i, move.to_i - 1)
+		if(board.get_cell(i, move.to_i - 1).value == "Z")
+			return [i, move.to_i - 1]
 		end	
 	end
 

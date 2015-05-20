@@ -17,7 +17,7 @@ describe Array do
 	
 	context "#has_four?" do
 		it "returns true if all elements of the Array are the same" do
-			expect(["A", "A", "A", "A"].has_four?).to be_truthy
+			expect(["A", "A", "A"].has_four?).to be_falsey
 		end
 		
 		it "returns false if some of the Array elements are not the same" do
@@ -27,6 +27,13 @@ describe Array do
 		it "returns true for an empty Array" do
 			expect([].has_four?).to be_falsey
 		end
+
+		it "returns false for four even if values are Z" do
+			expect(["Z", "Z", "Z", "Z", "Z"].has_four?).to be_falsey
+		end
+
+		
+		
 		
 	end
 	
